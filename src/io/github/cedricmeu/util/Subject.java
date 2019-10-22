@@ -3,6 +3,10 @@ package io.github.cedricmeu.util;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
+/**
+ * Base class for subjects on which can be observed for events
+ * @author cedricmeukens
+ */
 public class Subject {
     private ArrayList<Observer> observers;
 
@@ -10,6 +14,12 @@ public class Subject {
         observers = new ArrayList<>();
     }
 
+    /**
+     * Emit an <code>Event</code> and call the listener function
+     * for this <code>Event</code> in the <code>Observer</code>s
+     * if one is present
+     * @param e The event to be emitted
+     */
     protected void emit(Event e) {
         for (Observer o : observers) {
             Method eventHandler;
@@ -29,6 +39,13 @@ public class Subject {
         }
     }
 
+    /**
+     * Add an <code>Observer</code> to the <code>Subject</code>
+     * and notify if <code>Event</code>s are triggered and the
+     * <code>Observer</code> has a function implemented that listens
+     * for that specific <code>Event</code>
+     * @param observer The <code>Observer</code> to be added
+     */
     public void addObserver(Observer observer) {
         observers.add(observer);
     }
