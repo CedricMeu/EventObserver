@@ -28,6 +28,7 @@ class Person extends Subject {
     emit(new NameChangedEvent(this.name));
   }
 }
+```
 
 ## Observers
 Observers can implement `listener` functions with 
