@@ -21,6 +21,8 @@ public class Subject {
      * @param e The event to be emitted
      */
     protected void emit(Event e) {
+        if (e == null) throw new NullPointerException("Events cannot be null");
+
         for (Observer o : observers) {
             Method eventHandler;
             try {
