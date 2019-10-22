@@ -54,11 +54,11 @@ that accepts the passed `Event` will then be called.
 
 ```java
 class PersonLogger implements Observer {
-  public void listener(NameChangedEvent e) {
+  public void listen(NameChangedEvent e) {
     System.out.println("Name changed: " + e.getName());
   }
   
-  public void listener(CityChangedEvent e) {
+  public void listen(CityChangedEvent e) {
     System.out.println("City changed: " + e.getCity());
   }
 }
