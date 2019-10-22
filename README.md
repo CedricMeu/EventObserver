@@ -3,12 +3,12 @@ An implementation of the observer pattern combined with events
 
 ## Events
 Events are the classes emited by Subjects. 
-To make an event just crate a class that implements `Event`.
+To make an event just create a class that implements `Event`.
 
 ```java
 class NameChangedEvent implements Event {
   private String name;
-  public MessageEvent(String name) { this.name = name; }
+  public NameChangedEvent(String name) { this.name = name; }
   public String getName() { return this.name; }
 }
 ```
