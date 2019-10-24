@@ -35,7 +35,8 @@ public class Subject {
                 try {
                     eventHandler.invoke(o, e);
                 } catch (Exception exc) {
-                    System.out.println("Something went wrong with the implementation of an event listener");
+                    System.out.println(exc.getMessage());
+                    exc.printStackTrace();
                 }
             }
         }
