@@ -13,6 +13,14 @@ class NameChangedEvent implements Event {
 }
 ```
 
+```java
+class CityChangedEvent implements Event {
+  private String city;
+  public CityChangedEvent(String city) { this.city = city; }
+  public String getCity() { return this.city; }
+}
+```
+
 ## Subjects
 Subjects can emit events through the `emit` function. 
 A subject can emit different events.
@@ -20,12 +28,21 @@ A subject can emit different events.
 ```java
 class Person extends Subject {
   public String name;
+  public String city;
   
-  public Person(String name) { this.name = name; }
+  public Person(String name, String city) { 
+    this.name = name;
+    this.city = city;
+  }
   
   public void setName(String name) { 
     this.name = name;
     emit(new NameChangedEvent(this.name));
+  }
+  
+  public void setCity(String city) {
+    this.city = city;
+    emit(new CityChangedEvent(this.city));
   }
 }
 ```
@@ -37,8 +54,12 @@ that accepts the passed `Event` will then be called.
 
 ```java
 class PersonLogger implements Observer {
-  public void listener(NameChangedEvent e) {
+  public void listen(NameChangedEvent e) {
     System.out.println("Name changed: " + e.getName());
+  }
+  
+  public void listen(CityChangedEvent e) {
+    System.out.println("City changed: " + e.getCity());
   }
 }
 ```
@@ -48,7 +69,7 @@ class PersonLogger implements Observer {
 ```java
 static void main(String[] args) {
   // create the Subject
-  Person person = new Person("Foo Bar");
+  Person person = new Person("Foo Bar", "New York");
   
   // create the Observer
   PersonLogger logger = new PersonLogger();
@@ -58,5 +79,6 @@ static void main(String[] args) {
   
   // call a function in the Subject that emits an Event
   person.setName("John Doe");
+  person.setCity("Brussels");
 }
 ```
