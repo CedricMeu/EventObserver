@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Base class for subjects on which can be observed for events
  * @author cedricmeukens
  */
-public class Subject {
+public abstract class Subject {
     private ArrayList<Observer> observers;
 
     public Subject() {
@@ -20,7 +20,7 @@ public class Subject {
      * if one is present
      * @param e The event to be emitted
      */
-    protected void emit(Event e) {
+    final protected void emit(Event e) {
         if (e == null) throw new NullPointerException("Events cannot be null");
 
         for (Observer o : observers) {
@@ -49,7 +49,7 @@ public class Subject {
      * for that specific <code>Event</code>
      * @param observer The <code>Observer</code> to be added
      */
-    public void addObserver(Observer observer) {
+    final public void addObserver(Observer observer) {
         observers.add(observer);
     }
 }

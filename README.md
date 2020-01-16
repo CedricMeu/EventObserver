@@ -1,5 +1,5 @@
 # EventObserver
-An implementation of the observer pattern combined with events
+An implementation of the observer pattern combined with events supporting MVC
 
 ## Events
 Events are the classes emited by Subjects. 
@@ -82,3 +82,10 @@ static void main(String[] args) {
   person.setCity("Brussels");
 }
 ```
+
+## Model View Controller
+EventObserver now also has a MVC library. 
+Make a model by extending the abstract class `Model` (which is only really an extension of the `Subject` class),
+Make a view by extending the abstract class `View`.
+Make a controller by extending the abstract class `Controller`.
+Connect the model and the view by instantiating the controller and passing the model and view as argumetns in the constructor.
